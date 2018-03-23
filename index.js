@@ -28,7 +28,9 @@ const schema = buildSchema(`
 
 const resolver = {
 	customer(args) {
-		return customers.find(c => c.id == args.id)
+		return new Promise((resolve, reject) => {
+			resolve(customers.find(c => c.id == args.id))
+		})
 	},
 	customers(args) {
 		let result = [].concat(customers)
